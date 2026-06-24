@@ -23,7 +23,7 @@ while True:
     if result.multi_hand_landmarks:
         for hand in result.multi_hand_landmarks:
             
-            #draw_util.draw_landmarks(frame,hand,mp.solutions.hands.HAND_CONNECTIONS)
+            
             landmark = hand.landmark
             finger_tip =[8,12,16,20]
             for tip in finger_tip:
