@@ -2,7 +2,6 @@ import cv2
 import mediapipe as mp
 import math
 
-# راه‌اندازی Face Mesh
 mp_face = mp.solutions.face_mesh
 face_mesh = mp_face.FaceMesh(
     max_num_faces=1,
@@ -15,7 +14,6 @@ draw_util = mp.solutions.drawing_utils
 
 cap = cv2.VideoCapture(0)
 
-# محاسبه فاصله بین دو نقطه
 def distance(p1, p2):
     return math.hypot(p2.x - p1.x, p2.y - p1.y)
 
@@ -37,7 +35,6 @@ while True:
 
             landmarks = face_landmarks.landmark
 
-            # ---------- تشخیص لبخند ----------
             left_mouth = landmarks[61]
             right_mouth = landmarks[291]
             upper_lip = landmarks[13]
@@ -48,7 +45,6 @@ while True:
 
             smile_ratio = mouth_width / mouth_height
 
-            # ---------- تشخیص اخم ----------
             left_eyebrow = landmarks[70]
             right_eyebrow = landmarks[300]
             left_eye = landmarks[33]
@@ -57,13 +53,11 @@ while True:
             eyebrow_distance = distance(left_eyebrow, left_eye) + \
                                distance(right_eyebrow, right_eye)
 
-            # ---------- تشخیص تعجب ----------
             eye_top = landmarks[159]
             eye_bottom = landmarks[145]
 
             eye_open = distance(eye_top, eye_bottom)
 
-            # ---------- تصمیم گیری ----------
             if smile_ratio > 4.5:
                 emotion = "Happy :)"
 
@@ -76,7 +70,6 @@ while True:
             else:
                 emotion = "Normal :|"
 
-            # رسم نقاط صورت
             draw_util.draw_landmarks(
                 frame,
                 face_landmarks,
@@ -89,7 +82,6 @@ while True:
                 )
             )
 
-    # نمایش احساس
     cv2.putText(frame, emotion, (30, 60),
                 cv2.FONT_HERSHEY_SIMPLEX,
                 1.5, (0, 0, 255), 3)
