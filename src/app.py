@@ -35,17 +35,6 @@ while True:
                 cv2.putText(frame,str('VICTORY!'),(50,200),
                 cv2.FONT_HERSHEY_SIMPLEX,3,(0,255,0),3)  
             
-                    
-            
-    '''       
-    if finger_count == 5:
-        cv2.putText(frame,str('OK'),(50,200),
-                cv2.FONT_HERSHEY_SCRIPT_SIMPLEX,3,(0,255,0),3)
-    if finger_count == 0:
-        cv2.putText(frame,str('Not Ok'),(50,200),
-                cv2.FONT_HERSHEY_SCRIPT_SIMPLEX,3,(0,255,0),3)
-    '''
-            
         
     
     cv2.imshow('WebCame',frame)
